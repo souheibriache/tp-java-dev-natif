@@ -9,9 +9,9 @@ import javafx.application.Platform;
 
 public class MainController {
 
-    private final AudioModel audioModel;
-    private final CameraModel cameraModel;
-    private final LocationModel locationModel;
+    private AudioModel audioModel;
+    private CameraModel cameraModel;
+    private LocationModel locationModel;
     private final MainView view;
 
     public MainController(MainView view) {
@@ -20,6 +20,24 @@ public class MainController {
         this.locationModel = new LocationModel();
         this.view = view;
 
+        initializeEventHandlers();
+    }
+
+    public MainController(MainView view, AudioModel audioModel) {
+        this.view = view;
+        this.audioModel = audioModel;
+        initializeEventHandlers();
+    }
+
+    public MainController(MainView view, LocationModel locationModel) {
+        this.view = view;
+        this.locationModel = locationModel;
+        initializeEventHandlers();
+    }
+
+    public MainController(MainView view, CameraModel cameraModel) {
+        this.view = view;
+        this.cameraModel = cameraModel;
         initializeEventHandlers();
     }
 
@@ -67,5 +85,17 @@ public class MainController {
 
     public void shutdown() {
         cameraModel.close();
+    }
+
+    public AudioModel getAudioModel() {
+        return audioModel;
+    }
+
+    public CameraModel getCameraModel() {
+        return cameraModel;
+    }
+
+    public void setAudioModel(AudioModel audioModel) {
+        this.audioModel = audioModel;
     }
 }

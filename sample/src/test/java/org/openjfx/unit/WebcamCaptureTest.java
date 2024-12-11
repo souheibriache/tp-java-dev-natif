@@ -18,14 +18,24 @@ public class WebcamCaptureTest {
     }
 
     @Test
-    void testCaptureImageCreatesFile() {
+    void testCaptureImageCreatesValidFile() {
         try {
-            this.cameraModel.capturePhoto();
+            cameraModel.capturePhoto();
             File file = new File("capture.jpg");
-            assertTrue(file.exists(), "The image file should exist after capture.");
+            assertTrue(file.exists() && file.length() > 0, "The image file should exist and have content.");
         } catch (Exception e) {
-            e.printStackTrace();
-            fail("Exception occurred while capturing the photo: " + e.getMessage());
+            fail("Exception while capturing photo: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void testCapturePhotoHandlesNoWebcam() throws Exception {
+        try {
+            CameraModel cameraModel = new CameraModel(null); // Simulate no webcam
+            cameraModel.capturePhoto();
+            fail("Exception expected when webcam is not available.");
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            assertTrue(e.getMessage().contains("No webcam detected"), "Expected 'No webcam detected' exception.");
         }
     }
 }

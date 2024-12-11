@@ -11,7 +11,17 @@ public class CameraModel {
         this.webcam = Webcam.getDefault();
     }
 
+    public CameraModel(Webcam webcam) {
+        if (webcam == null) {
+            throw new IllegalArgumentException("No webcam detected");
+        }
+        this.webcam = webcam;
+    }
+
     public void capturePhoto() throws Exception {
+        if (webcam == null) {
+            throw new IllegalStateException("No webcam detected");
+        }
         if (!webcam.isOpen()) {
             webcam.open();
         }

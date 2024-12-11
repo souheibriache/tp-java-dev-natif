@@ -19,12 +19,16 @@ public class MainView extends VBox {
         setPadding(new Insets(10));
 
         recordButton = new Button("Enregistrer Audio");
+        recordButton.setId("recordButton"); // Add ID
         stopRecordButton = new Button("Arreter l'enregistrement");
+        stopRecordButton.setId("stopRecordButton"); // Add ID
         stopRecordButton.setDisable(true);
         cameraButton = new Button("Capturer image");
+        cameraButton.setId("cameraButton"); // Add ID
         locationButton = new Button("Obtenir Coordonnées GPS");
+        locationButton.setId("locationButton"); // Add ID
 
-        getChildren().addAll(recordButton,stopRecordButton, cameraButton, locationButton);
+        getChildren().addAll(recordButton, stopRecordButton, cameraButton, locationButton);
     }
 
     public void setRecordButtonAction(EventHandler<ActionEvent> handler) {
@@ -34,7 +38,6 @@ public class MainView extends VBox {
     public void setStopRecordButtonAction(EventHandler<ActionEvent> handler) {
         stopRecordButton.setOnAction(handler);
     }
-
 
     public void setCameraButtonAction(EventHandler<ActionEvent> handler) {
         cameraButton.setOnAction(handler);
@@ -49,5 +52,4 @@ public class MainView extends VBox {
         stopRecordButton.setDisable(!stopRecordButton.isDisabled());
     }
 
-    
 }

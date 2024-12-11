@@ -4,7 +4,10 @@ module org.openjfx {
     requires org.json;
     requires org.locationtech.jts;
     requires org.geotools.main;
-    exports org.openjfx;
     requires webcam.capture;
 
+    exports org.openjfx;
+    exports org.openjfx.models;
+    exports org.openjfx.controller;
+    exports org.openjfx.view;
 }
